@@ -1,0 +1,49 @@
+body {
+  margin: 0;
+}
+
+.container {
+  max-width: 1200px;
+  min-width: 600px;
+  margin: auto;
+}
+
+.tiles {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  height: 80vh;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  box-sizing: border-box;
+  align-items: flex-start;
+}
+
+.tile {
+  box-sizing: border-box;
+  width: 25%;
+  height: 25%;
+  border: 2px solid white;
+
+  background-color: black;
+}
+
+.tile.tile--red {background-color: red;}
+.tile.tile--blue {background-color: blue;}
+.tile.tile--orange {background-color: orange;}
+.tile.tile--grey {background-color: grey;}
+.tile.tile--green {background-color: green;}
+.tile.tile--purple {background-color: purple;}
+.tile.tile--darkcyan {background-color: darkcyan;}
+.tile.tile--coral {background-color: coral;}
+
+.tile.tile--close {background-color: black;}
+/*
+.tile--red {background-color: red;}
+.tile--blue {background-color: blue;}
+.tile--orange {background-color: orange;}
+.tile--grey {background-color: grey;}
+.tile--green {background-color: green;}
+.tile--purple {background-color: purple;}
+.tile--darkcyan {background-color: darkcyan;}
+.tile--coral {background-color: coral;}*/
