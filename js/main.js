@@ -1,7 +1,7 @@
-let tilesContainer = document.querySelector('.tiles');
-let tilesAll = Array.prototype.slice.call( document.querySelectorAll('.tile'));
+const tilesContainer = document.querySelector('.tiles');
+const tilesAll = Array.prototype.slice.call( document.querySelectorAll('.tile'));
 let initializationTileClass = tilesAll[0].className;
-let tilesColor = [
+const tilesColor = [
   'red',
   'blue',
   'orange',
@@ -23,19 +23,20 @@ function startNewGame() {
   setClearTiles(tilesAll);
   closeTiles(tilesAll);
   initializationTileClass = tilesAll[0].className;
-  setRandomColor();
+  roundCount = 0;
+  setRandomColorToAllTiles();
 }
 
 function setClearTiles(tiles) {
-  tiles.forEach(function(tile) {
+  tiles.forEach((tile) => {
     tile.className = 'tile';
   })
 }
 
-setRandomColor();
+setRandomColorToAllTiles();
 
-tilesContainer.addEventListener('click', function(evt) {
-  let target = evt.target;
+tilesContainer.addEventListener('click', (evt) => {
+  let {target} = evt;
 
   if (target.classList.contains('tile')) {
     tilesArr.push(target);
@@ -49,8 +50,8 @@ tilesContainer.addEventListener('click', function(evt) {
   }
 })
 
-function setRandomColor() {
-  tilesColor.forEach(function(color) {
+function setRandomColorToAllTiles() {
+  tilesColor.forEach((color) => {
     for (let i=0; i < MAX_COUNT_COLOR; i++) {
       setTileColor(color);
     }
@@ -64,21 +65,20 @@ function setTileColor(color) {
 }
 
 function getFreeIndexTile() {
-  let indexTile = getRandomIndex();
+  let indexTile = 0;
 
   while(tilesAll[indexTile].className !== initializationTileClass) {
-    indexTile = getRandomIndex();
+    indexTile = getRandomIndex(tilesAll.length);
   }
   return indexTile;
 }
 
-function getRandomIndex() {
-  return Math.floor(Math.random()*tilesAll.length);
+function getRandomIndex(max) {
+  return Math.floor(Math.random()*max);
 }
 
 function chooseTwoTile(tiles) {
-  let firstTile = tiles[0];
-  let secondTile = tiles[1];
+  const [firstTile, secondTile] = tiles;
   validIdenticalTile(firstTile, secondTile, CLOSE_TIME);
 }
 
@@ -89,7 +89,7 @@ function validIdenticalTile(tile1, tile2, closeTime) {
 }
 
 function closeTiles(tiles) {
-  tiles.forEach(function(tile){
+  tiles.forEach((tile) => {
     if(!tile.classList.contains('tile--close')) {
       tile.classList.add('tile--close')
     }
@@ -97,7 +97,7 @@ function closeTiles(tiles) {
 }
 
 let roundCountContainer = document.querySelector('.round__count');
-let roundCount = 0
+let roundCount = 0;
 
 function setRoundCount() {
   roundCountContainer.innerHTML = ++roundCount;
